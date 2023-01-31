@@ -61,7 +61,7 @@ function App() {
             <div className="card card-style">
               <div className="card-image justify-content-center">
                 <figure className="image is-128x128">
-                  <img src={character.image} className="" />
+                  <img loading="lazy" src={character.image} className="" />
                 </figure>
               </div>
               <div className="card-content">
