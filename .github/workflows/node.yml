@@ -35,7 +35,7 @@ jobs:
         node-version: 18
         cache: 'npm'
     - run: npm ci
-    - run: npm run build -- --base=/Consume-Api/
+    - run: npm run build -- --base=/Consume_Api/
     - name: Setup Pages
       uses: actions/configure-pages@v2
     - name: Upload artifact
