@@ -36,7 +36,7 @@ function App() {
     <React.Fragment>
       <ChakraProvider>
         <Center bg='#2C5282' h='100px' color='white' pt={10} mb={4}>
-          <h1 className="panel-heading panel-title">Rick and Morty API</h1>
+          <h1 className="panel-title">Rick and Morty API</h1>
         </Center>
 
         {/* <div className="search-button"> */}
@@ -57,6 +57,7 @@ function App() {
             bg="blue.500"
             color="white"
             size="md"
+            mx={2}
             onClick={() =>
               setUrl("https://rickandmortyapi.com/api/character/?page=1")
             }
@@ -89,17 +90,15 @@ function App() {
             bg="blue.500"
             color="white"
               isDisabled={!data.info.prev}
-              className="button"
               onClick={() => setUrl(data.info.prev)}
             >
               Anterior
             </Button>
-            <Button className="button is-primary mx-2">{page}</Button>
+            <Button mx={2}>{page}</Button>
             <Button
             bg="blue.500"
             color="white"
               isDisabled={!data.info.next}
-              className="button"
               onClick={() => setUrl(data.info.next)}
             >
               Siguiente
