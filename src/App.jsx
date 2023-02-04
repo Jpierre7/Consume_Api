@@ -118,22 +118,22 @@ function App() {
             {data.results.map((character) => (
               <GridItem key={character.id}>
                 <Card align='center'>
-                  <CardBody mt={2}>
+                  <CardBody mt={2} align='center'>
                     <Image
                       borderRadius="full"
                       boxSize="150px"
                       src={character.image}
                     />
                     <HStack mt={2}>
-                      <Text>NAME:</Text>
+                      <Text fontSize='xl' fontWeight='bold'>NAME:</Text>
                       <Text>{character.name}</Text>
                     </HStack>
                     <HStack mt={2}>
-                      <Text>TYPE:</Text>
+                      <Text fontSize='xl' fontWeight='bold'>TYPE:</Text>
                       <Text>{character.type || "Not Type"}</Text>
                     </HStack>
                     <HStack mt={2}>
-                      <Text>STATUS:</Text>
+                      <Text fontSize='xl' fontWeight='bold'>STATUS:</Text>
                       <Text>{character.status}</Text>
                     </HStack>
                   </CardBody>
