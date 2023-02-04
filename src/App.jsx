@@ -6,7 +6,17 @@ import {
   InputGroup,
   InputLeftAddon,
   Center,
-  Flex
+  Flex,
+  Grid,
+  GridItem,
+  Card,
+  CardBody,
+  Divider,
+  CardFooter,
+  Image,
+  HStack,
+  Text,
+  Tag,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 function App() {
@@ -35,24 +45,28 @@ function App() {
   return (
     <React.Fragment>
       <ChakraProvider>
-        <Center bg='#2C5282' h='100px' color='white' pt={10} mb={4}>
+        <Center bg="#2C5282" h="100px" color="white" pt={10} mb={4}>
           <h1 className="panel-title">Rick and Morty API</h1>
         </Center>
 
         {/* <div className="search-button"> */}
-          <InputGroup className="search-button">
-            <InputLeftAddon bg="blue.500" children={<SearchIcon color='white' />} />
-            {/* <IconButton aria-label='Search database' icon={<SearchIcon />} /> */}
-            <Input
-              htmlSize={20} width='auto'
-              colorScheme="orange"
-              isRequired={false}
-              value={name}
-              size="md"
-              type="text"
-              placeholder="Search"
-              onChange={({ target }) => setName(target.value)} //deestrutura para react js
-            />
+        <InputGroup className="search-button">
+          <InputLeftAddon
+            bg="blue.500"
+            children={<SearchIcon color="white" />}
+            ml={{ base: "2" }}
+          />
+          {/* <IconButton aria-label='Search database' icon={<SearchIcon />} /> */}
+          <Input
+            htmlSize={20}
+            width="auto"
+            colorScheme="orange"
+            value={name}
+            size="md"
+            type="text"
+            placeholder="Search"
+            onChange={({ target }) => setName(target.value)} //deestrutura para react js
+          />
           <Button
             bg="blue.500"
             color="white"
@@ -61,34 +75,31 @@ function App() {
             onClick={() =>
               setUrl("https://rickandmortyapi.com/api/character/?page=1")
             }
-            >
+          >
             Consultar
           </Button>
           {data.results.length > 0 && (
             <Button
-            bg="red.500"
-            color="white"
-            size="md"
-            onClick={() => {
-              setData({ info: {}, results: [] });
-              setUrl("");
-            }}
+              bg="red.500"
+              color="white"
+              size="md"
+              onClick={() => {
+                setData({ info: {}, results: [] });
+                setUrl("");
+              }}
+              mr={{ base: "2" }}
             >
               Limpiar
             </Button>
           )}
-          </InputGroup>
+        </InputGroup>
         {/* </div> */}
 
-        
         {data.results.length > 0 && (
-          <Flex
-            justify="center"
-            mt={4}
-          >
+          <Flex justify="center" mt={4}>
             <Button
-            bg="blue.500"
-            color="white"
+              bg="blue.500"
+              color="white"
               isDisabled={!data.info.prev}
               onClick={() => setUrl(data.info.prev)}
             >
@@ -96,8 +107,8 @@ function App() {
             </Button>
             <Button mx={2}>{page}</Button>
             <Button
-            bg="blue.500"
-            color="white"
+              bg="blue.500"
+              color="white"
               isDisabled={!data.info.next}
               onClick={() => setUrl(data.info.next)}
             >
@@ -106,49 +117,49 @@ function App() {
           </Flex>
         )}
         <br />
-        <div className="container">
-          <div className="columns is-desktop is-mobile is-tablet is-multiline is-centered">
+        <Flex justify="center">
+          <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }} gap={6}>
             {data.results.map((character) => (
-              <div
-                className="column is-12-mobile is-4-desktop is-4-tablet"
-                key={character.id}
-              >
-                <div className="card card-style">
-                  <div className="card-image justify-content-center">
-                    <figure className="image is-128x128">
-                      <img loading="lazy" src={character.image} className="" />
-                    </figure>
-                  </div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-left">
-                        <h1 className="title is-size-5">Name:</h1>
-                      </div>
-                      <h1>{character.name}</h1>
-                    </div>
-                    <div className="media">
-                      <div className="media-left">
-                        <h1 className="title is-size-5">Type:</h1>
-                      </div>
-                      <p>{character.type || "Not Type"}</p>
-                    </div>
-                    <div className="media">
-                      <div className="media-left">
-                        <p className="title is-size-5">Status:</p>
-                      </div>
-                      <p>{character.status}</p>
-                    </div>
-                  </div>
-                  <footer className="card-footer">
-                    <span className="tag is-success mt-2">
-                      {character.status}
-                    </span>
-                  </footer>
-                </div>
-              </div>
+              <GridItem key={character.id}>
+                {/* <Center> */}
+                <Card align='center'>
+                  <CardBody mt={2}>
+                    <Image
+                      borderRadius="full"
+                      boxSize="150px"
+                      src={character.image}
+                    />
+                    <HStack mt={2}>
+                      <Text>NAME:</Text>
+                      <Text>{character.name}</Text>
+                    </HStack>
+                    <HStack mt={2}>
+                      <Text>TYPE:</Text>
+                      <Text>{character.type || "Not Type"}</Text>
+                    </HStack>
+                    <HStack mt={2}>
+                      <Text>STATUS:</Text>
+                      <Text>{character.status}</Text>
+                    </HStack>
+                  </CardBody>
+                  <HStack justify="center">
+                    <CardFooter>
+                      <Tag
+                        size="md"
+                        key="md"
+                        variant="solid"
+                        colorScheme="teal"
+                      >
+                        {character.status}
+                      </Tag>
+                    </CardFooter>
+                  </HStack>
+                </Card>
+                {/* </Center> */}
+              </GridItem>
             ))}
-          </div>
-        </div>
+          </Grid>
+        </Flex>
 
         <footer className="footer">
           <div className="content has-text-centered">
