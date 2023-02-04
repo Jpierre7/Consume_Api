@@ -48,15 +48,12 @@ function App() {
         <Center bg="#2C5282" h="100px" color="white" pt={10} mb={4}>
           <h1 className="panel-title">Rick and Morty API</h1>
         </Center>
-
-        {/* <div className="search-button"> */}
         <InputGroup className="search-button">
           <InputLeftAddon
             bg="blue.500"
             children={<SearchIcon color="white" />}
             ml={{ base: "2" }}
           />
-          {/* <IconButton aria-label='Search database' icon={<SearchIcon />} /> */}
           <Input
             htmlSize={20}
             width="auto"
@@ -93,7 +90,6 @@ function App() {
             </Button>
           )}
         </InputGroup>
-        {/* </div> */}
 
         {data.results.length > 0 && (
           <Flex justify="center" mt={4}>
@@ -121,7 +117,6 @@ function App() {
           <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }} gap={6}>
             {data.results.map((character) => (
               <GridItem key={character.id}>
-                {/* <Center> */}
                 <Card align='center'>
                   <CardBody mt={2}>
                     <Image
@@ -155,7 +150,6 @@ function App() {
                     </CardFooter>
                   </HStack>
                 </Card>
-                {/* </Center> */}
               </GridItem>
             ))}
           </Grid>
